@@ -68,6 +68,7 @@ const Basket = () => {
                     onClick={() => {
                       dispatch(addToCart(elem));
                     }}
+                    className="button"
                   >
                     add
                   </button>
@@ -76,6 +77,7 @@ const Basket = () => {
                     onClick={() => {
                       dispatch(removeItem(elem));
                     }}
+                    className="button"
                   >
                     remove
                   </button>
@@ -84,6 +86,7 @@ const Basket = () => {
                     onClick={() => {
                       dispatch(incrementQuantity(elem));
                     }}
+                    className="button"
                   >
                     +
                   </button>
@@ -92,6 +95,7 @@ const Basket = () => {
                     onClick={() => {
                       dispatch(decrementQuantity(elem));
                     }}
+                    className="button"
                   >
                     -
                   </button>

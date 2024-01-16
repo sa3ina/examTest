@@ -17,43 +17,74 @@ const Add = () => {
     dispatch(fetchUserData());
   }, [dispatch]);
   const [search, setSearch] = useState("");
-  const filtered = data.filter((elem) => {
-    return elem.name.toLowerCase().includes(search.toLowerCase());
-  });
-  console.log(filtered);
-  console.log("he");
+  const [type, setType] = useState("");
+
+  // const filtered = data.filter((elem) =>
+  //   elem.name.toLowerCase().includes(search.toLowerCase())
+  // );
+
+  const sortedData = () => {
+    if (type === "az") {
+      return [...data].sort((a, b) => a.name.localeCompare(b.name));
+    } else if (type === "za") {
+      return [...data].sort((a, b) => b.name.localeCompare(a.name));
+    } else if (type === "price") {
+      return [...data].sort((a, b) => a.price - b.price);
+    }
+    return data;
+  };
   return (
     <>
-      <input type="text" onChange={(e) => setSearch(e.target.value)} />
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell>Id</TableCell>
-
-              <TableCell>Name</TableCell>
-              <TableCell>Description</TableCell>
-              <TableCell>Price</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {data &&
-              data.map((row) => (
-                <TableRow
-                  key={row.name}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell>{row.id}</TableCell>
-                  <TableCell component="th" scope="row">
-                    {row.name}
-                  </TableCell>
-                  <TableCell>{row.desc}</TableCell>
-                  <TableCell>${row.price}</TableCell>
-                </TableRow>
-              ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <div className="add">
+        <div className="sort">
+          <input
+            type="text"
+            className="input"
+            placeholder="search.."
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <button className="button" onClick={() => setType("az")}>
+            A to Z
+          </button>
+          <button className="button" onClick={() => setType("za")}>
+            Z to A
+          </button>
+          <button className="button" onClick={() => setType("price")}>
+            price
+          </button>
+        </div>
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>Id</TableCell>
+                <TableCell>Name</TableCell>
+                <TableCell>Description</TableCell>
+                <TableCell>Price</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {sortedData()
+                .filter((elem) =>
+                  elem.name.toLowerCase().includes(search.toLowerCase())
+                )
+                .map((row, i) => (
+                  <TableRow
+                    key={i}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell>{row.id}</TableCell>
+                    <TableCell component="th" scope="row">
+                      {row.name}
+                    </TableCell>
+                    <TableCell>{row.desc}</TableCell>
+                    <TableCell>${row.price}</TableCell>
+                  </TableRow>
+                ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </div>
     </>
   );
 };

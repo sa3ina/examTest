@@ -38,7 +38,7 @@ const Home = () => {
             <div
               style={{
                 backgroundColor: "orange",
-                width: "300px",
+                width: "200px",
                 height: "1px",
               }}
             ></div>
@@ -46,7 +46,7 @@ const Home = () => {
             <div
               style={{
                 backgroundColor: "orange",
-                width: "300px",
+                width: "40%",
                 height: "1px",
               }}
             ></div>

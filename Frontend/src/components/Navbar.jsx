@@ -38,8 +38,7 @@ function Navbar() {
   };
 
   return (
-    <AppBar position="absolute" style={{ backgroundColor: "black" }}>
-      {/* <img src="https://preview.colorlib.com/theme/pulse/img/slider/slider-3.jpg" alt="" style={{position:"absolute",maxWidth:"100%"}} /> */}
+    <AppBar position="absolute" style={{ backgroundColor: "transparent" }}>
       <Container maxWidth="100%" className="cont">
         <Toolbar disableGutters>
           <Typography
@@ -58,8 +57,17 @@ function Navbar() {
             }}
             style={{ fontSize: "40px" }}
           >
-            Pulse.
+            Pulse{" "}
+            <div
+              style={{
+                backgroundColor: "orange",
+                height: "5px",
+                width: "5px",
+                marginTop: "40px",
+              }}
+            ></div>
           </Typography>
+
           <hr
             style={{
               position: "absolute",
@@ -106,7 +114,7 @@ function Navbar() {
           <Box
             sx={{
               flexGrow: 1,
-              display: { xs: "none", md: "flex" },
+              display: { xs: "none", md: "flex", xl: "flex", sm: "none" },
               justifyContent: "center",
               alignItems: "center",
             }}
