@@ -21,6 +21,7 @@ const Add = () => {
     return elem.name.toLowerCase().includes(search.toLowerCase());
   });
   console.log(filtered);
+  console.log("he");
   return (
     <>
       <input type="text" onChange={(e) => setSearch(e.target.value)} />
